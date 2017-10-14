@@ -5,7 +5,7 @@ package adt.sort
  */
 
 
-object QuitckSort {
+object QuickSort {
 
 
     @JvmStatic
@@ -17,7 +17,7 @@ object QuitckSort {
             println(i)
     }
 
-    fun quickSort(array: Array<Int>, l: Int, r: Int) {
+    private fun quickSort(array: Array<Int>, l: Int, r: Int) {
         if (l < r) {
             val partition = partition(array, l, r)
             quickSort(array, l, partition - 1)
@@ -25,7 +25,7 @@ object QuitckSort {
         }
     }
 
-    fun partition(array: Array<Int>, l: Int, r: Int): Int {
+    private fun partition(array: Array<Int>, l: Int, r: Int): Int {
         var x = l
         var y = r
         var target = array[r]
