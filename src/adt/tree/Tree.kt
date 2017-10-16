@@ -1,6 +1,8 @@
 package adt.tree
 
 import adt.utils.Utils
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by hds on 17-10-14.
@@ -76,6 +78,12 @@ object Tree {
         traversal(node, TYPE_PRE)
         traversal(node, TYPE_IN)
         traversal(node, TYPE_AFTER)
+
+        for (i in 0..9) {
+            var randomArray = Utils.randomList(i)
+            Collections.sort(randomArray)
+            convertToBiSearchTree(randomArray)
+        }
     }
 
     /**
@@ -113,6 +121,25 @@ object Tree {
 
         node.rightNode = reverseTree(nLeft!!)
 
+        return node
+    }
+
+    /**
+     * 转化 sortedArrayTo二叉搜索树
+     * 二叉搜索树的定义：
+     *
+     */
+    fun convertToBiSearchTree(nums: ArrayList<Int>): Utils.Node<Int>? {
+        if (nums.isEmpty()) return null
+        return helper(nums, 0, nums.size - 1)
+    }
+
+    private fun helper(nums: ArrayList<Int>, l: Int, r: Int): Utils.Node<Int>? {
+        if (l > r) return null
+        var mid: Int = (l + r) / 2
+        var node = Utils.Node(null, null, nums[mid])
+        node.leftNode = helper(nums, l, mid - 1)
+        node.rightNode = helper(nums, mid + 1, r)
         return node
     }
 

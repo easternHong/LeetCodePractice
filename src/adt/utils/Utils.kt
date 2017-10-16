@@ -44,6 +44,15 @@ object Utils {
             return list
         }
 
+    fun randomList(size: Int): ArrayList<Int> {
+        val list = ArrayList<Int>()
+        for (i in 0..size) {
+            list.add(getRandom(50))
+        }
+        println(list)
+        return list
+    }
+
     fun getRandom(max: Int): Int {
         return getRandom(0, max)
     }
