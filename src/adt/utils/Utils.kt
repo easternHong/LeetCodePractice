@@ -7,6 +7,32 @@ import java.util.*
  */
 object Utils {
 
+    class Node<T>(var leftNode: Node<T>?, var rightNode: Node<T>?, data: T) {
+        var data: T? = data
+    }
+
+    private fun createNode(data: Int): Node<Int> {
+        return Node(null, null, data)
+    }
+
+    fun getRandomTree(cnt: Int): Node<Int> {
+        var head = createNode(10)
+        var first = head
+        for (i in 0..cnt) {
+            val r = Utils.getRandom(20)
+            println("random:" + r)
+            if (r % 2 == 0) {
+                var leftChild = createNode(i)
+                head.rightNode = leftChild
+                head = leftChild
+            } else {
+                var rightChild = createNode(i)
+                head.leftNode = rightChild
+                head = rightChild
+            }
+        }
+        return first
+    }
 
     val randomList: ArrayList<Int>
         get() {

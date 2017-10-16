@@ -69,16 +69,10 @@ object Tree {
     private val TYPE_IN: Int = 1
     private val TYPE_AFTER: Int = 2
 
-    class Node<T>(leftNode: Node<T>?, rightNode: Node<T>?, data: T) {
-        var leftNode: Node<T>? = leftNode
-        var rightNode: Node<T>? = rightNode
-        var data: T? = data
-    }
-
     @JvmStatic
     fun main(args: Array<String>) {
         println("Tree")
-        var node = createRandomTree(10)
+        var node = Utils.getRandomTree(10)
         traversal(node, TYPE_PRE)
         traversal(node, TYPE_IN)
         traversal(node, TYPE_AFTER)
@@ -88,7 +82,7 @@ object Tree {
      * 前序遍历，中序遍历，后序遍历
      * 只不过是打印的位置不同
      */
-    private fun traversal(node: Node<Int>?, type: Int) {
+    private fun traversal(node: Utils.Node<Int>?, type: Int) {
         if (node == null) return
         if (type == TYPE_PRE)
             println("pre: " + node.data)
@@ -100,32 +94,26 @@ object Tree {
             println("after: " + node.data)
     }
 
-    private fun traversalLevel(node: Node<Int>?) {
+    private fun traversalLevel(node: Utils.Node<Int>?) {
 
     }
 
-    private fun createRandomTree(cnt: Int): Node<Int> {
-        var head = createNode(10)
-        var first = head
-        for (i in 0..cnt) {
-            val r = Utils.getRandom(20)
-            println("random:" + r)
-            if (r % 2 == 0) {
-                var leftChild = createNode(i)
-                head.rightNode = leftChild
-                head = leftChild
-            } else {
-                var rightChild = createNode(i)
-                head.leftNode = rightChild
-                head = rightChild
-            }
-        }
-        return first
-    }
+    //计算节点个数，O(N)，遍历所有的节点，按照上面的前序，中序，后序遍历都可以实现
 
-    private fun createNode(data: Int): Node<Int> {
-        return Node(null, null, data)
-    }
 
+    //翻转二叉树。
+
+    fun reverseTree(node: Utils.Node<Int>): Utils.Node<Int>? {
+
+        if (node == null) return null
+
+        var nLeft = node.leftNode
+
+        node.leftNode = reverseTree(node.rightNode!!)
+
+        node.rightNode = reverseTree(nLeft!!)
+
+        return node
+    }
 
 }

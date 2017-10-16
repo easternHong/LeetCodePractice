@@ -1,9 +1,26 @@
 package test
 
+import java.util.*
+
 /**
- * Created by hds on 17-10-14.
+ * Created by eastern on 2017/10/15.
  */
-class Test {
-    internal inner class Node<T>(var leftNode: Node<T>, var rightNode: Node<T>, var data: T)
+object Test {
+
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+
+        for (i in 0..9)
+            println(getString()?.length)
+
+    }
+
+    fun getString(): String? {
+        val r = Random().nextInt() % 2
+        if (r == 0) return null
+        return "" + r
+    }
+
 
 }
