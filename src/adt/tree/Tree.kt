@@ -128,4 +128,12 @@ object Tree {
     }
 
 
+    private fun reverseTree(root: Node<Int>?): Node<Int>? {
+        if (root == null) return null
+        val left = reverseTree(root.leftNode)
+        root.leftNode = reverseTree(root.rightNode)
+        root.rightNode = left
+        return root
+    }
+
 }
