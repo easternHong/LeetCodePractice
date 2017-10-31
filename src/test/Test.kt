@@ -12,11 +12,13 @@ object Test {
     fun main(args: Array<String>) {
 
         for (i in 0..9)
-            println(getString()?.length)
-
+            print("${getString()?.length},")
+        println()
+        println('a')
     }
 
-    fun getString(): String? {
+
+    private fun getString(): String? {
         val r = Random().nextInt() % 2
         if (r == 0) return null
         return "" + r

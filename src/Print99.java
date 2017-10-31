@@ -22,5 +22,12 @@ public class Print99 {
                 j = 0;
             }
         }
+        System.out.println(get(2229));
+
+        System.out.println((char)('A' + (28 % 26)));
+    }
+
+    private static String get(int n){
+        return n == 0 ? "" : get(--n / 26) + (char)('A' + (n % 26));
     }
 }
