@@ -24,9 +24,7 @@ object BubbleSort {
         for (i in 0..cnt) {
             for (j in i + 1..cnt) {
                 if (arrays[j] < arrays[i]) {
-                    val tmp = arrays[i]
-                    arrays[i] = arrays[j]
-                    arrays[j] = tmp
+                    swap(i, j, arrays)
                 }
             }
         }
@@ -35,5 +33,42 @@ object BubbleSort {
 
     private fun bubbleSortEnhance(arrays: ArrayList<Int>) {
         println("改进版bubble")
+    }
+
+    private fun swap(i: Int, j: Int, arrays: ArrayList<Int>) {
+        val tmp = arrays[i]
+        arrays[i] = arrays[j]
+        arrays[j] = tmp
+    }
+
+    fun bubbleSort(array: IntArray) {
+        for (i in array.indices) {
+            for (j in i + 1..array.size - 1) {
+                if (array[i] > array[j]) {
+                    swap(i, j, array)
+                }
+            }
+        }
+    }
+
+    fun oBubbleSort(array: IntArray) {
+        var flag = true
+        var i = 0
+        while (i < array.size && flag) {
+            flag = false
+            for (j in 0..array.size - i - 1 - 1) {
+                if (array[j] > array[j + 1]) {
+                    swap(j, j + 1, array)
+                    flag = true
+                }
+            }
+            i++
+        }
+    }
+
+    private fun swap(i: Int, j: Int, array: IntArray) {
+        val tmp = array[i]
+        array[i] = array[j]
+        array[j] = tmp
     }
 }
