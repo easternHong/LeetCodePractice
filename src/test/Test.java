@@ -2,6 +2,7 @@ package test;
 
 import adt.tree.BTree;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -10,10 +11,11 @@ import static adt.tree.BTree.tree;
 public class Test {
 
     public static void main(String[] args) {
-
-//        int[] array = {0, 30, 5, 40, 15, 20, 7};
-//        qSort(array);
-//        System.out.println(Arrays.toString(array));
+        print_99_table(10);
+        int[] array = {0, 30, 5, 40, 15, 20, 7};
+        optBubble(array);
+        System.out.println("优化版冒泡：" + Arrays.toString(array));
+        System.out.println("二分搜索:30:" + bSearch(array, 30));
 
         Node<Integer> head = createList();
         traval(head);
@@ -155,4 +157,68 @@ public class Test {
     }
 
 
+    public static void optBubble(int[] array) {
+        if (array == null || array.length == 1) return;
+//        for (int i = 0; i < array.length; i++) {
+//            for (int j = i + 1; j < array.length; j++) {
+//                if (array[i] > array[j]) {
+//                    swap(i, j, array);
+//                }
+//            }
+//        }
+        boolean flag = true;
+        for (int i = 0; i < array.length && flag; i++) {
+            flag = false;
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(j, j + 1, array);
+                    flag = true;
+                }
+            }
+        }
+
+    }
+
+    public static int bSearch(int[] array, int target) {
+        if (array == null) return -1;
+        int low = 0, high = array.length - 1;
+        int startIndex = -1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (array[mid] > target) {
+                high = mid - 1;
+            } else if (array[mid] < target) {
+                low = mid + 1;
+            } else {
+                startIndex = mid;
+                //第一位
+                high = mid - 1;
+                //最后一位，low = mid + 1;
+            }
+        }
+        return startIndex;
+    }
+
+    /**
+     * 一个for打印99乘法表
+     */
+    private static void print_99_table(int n) {
+        for (int i = 1, j = 1; i < 10; j++) {
+            System.out.print(i + "*" + j + "=" + (i * j) + " ");
+            if (i == j) {
+                i++;
+                j = 0;
+                System.out.println();
+            }
+        }
+        for (int i = 1, j = 1; i < 10; j++) {
+
+            if (i == j) {
+                i++;
+                j = 0;
+            }
+
+        }
+
+    }
 }
