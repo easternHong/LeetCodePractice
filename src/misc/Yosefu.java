@@ -26,7 +26,7 @@ public class Yosefu {
         Utils.Node<Integer> current = head;
         while (current != current.next) {
             System.out.print("");
-            for (int i = 1; i < step - 1; i++) {
+            for (int i = 0; i < step - 2; i++) {
                 current = current.next;
             }
             Utils.Node<Integer> next = current.next;
