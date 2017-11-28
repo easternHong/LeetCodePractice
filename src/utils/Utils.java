@@ -36,6 +36,14 @@ public class Utils {
         return root;
     }
 
+    public static <T> void printList(Node<T> head) {
+        while (head != null) {
+            System.out.print("," + head.data);
+            head = head.next;
+        }
+        System.out.println("");
+    }
+
     public static Node<Integer> createCircle(int cnt) {
         Node<Integer> root = new Node<>(0);
         Node<Integer> next = root;
