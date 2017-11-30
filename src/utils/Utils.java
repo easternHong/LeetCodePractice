@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.LinkedList;
+
 public class Utils {
 
     public static void main(String[] args) {
@@ -60,4 +62,26 @@ public class Utils {
         return new Node<>(data);
     }
 
+    public static void traval(Utils.Node<Integer> head) {
+        while (head != null) {
+            System.out.print(head.data + ",");
+            head = head.next;
+        }
+        System.out.println();
+    }
+
+    public static Node<Integer> createList() {
+        int cont = 10;
+        LinkedList<Node<Integer>> linkedList = new LinkedList<>();
+        for (int i = 0; i < cont; i++) {
+            Node<Integer> node = new Node<>(i);
+            node.data = i;
+            linkedList.add(node);
+        }
+        for (int i = 0; i < cont - 1; i++) {
+            Node<Integer> node = linkedList.get(i);
+            node.next = linkedList.get(i + 1);
+        }
+        return linkedList.get(0);
+    }
 }

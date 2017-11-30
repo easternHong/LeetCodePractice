@@ -1,9 +1,9 @@
 package test;
 
 import adt.tree.BTree;
+import utils.Utils;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Stack;
 
 import static adt.tree.BTree.tree;
@@ -16,11 +16,6 @@ public class Test {
         optBubble(array);
         System.out.println("优化版冒泡：" + Arrays.toString(array));
         System.out.println("二分搜索:30:" + bSearch(array, 30));
-
-        Node<Integer> head = createList();
-        traval(head);
-        head = invertLinkedList(head);
-        traval(head);
 
         BTree.BNode root = tree();
         invertBT_(root);
@@ -75,53 +70,8 @@ public class Test {
         array[j] = tmp;
     }
 
-    public static Node<Integer> createList() {
-        int cont = 10;
-        LinkedList<Node<Integer>> linkedList = new LinkedList<>();
-        for (int i = 0; i < cont; i++) {
-            Node<Integer> node = new Node<>();
-            node.data = i;
-            linkedList.add(node);
-        }
-        for (int i = 0; i < cont - 1; i++) {
-            Node<Integer> node = linkedList.get(i);
-            node.next = linkedList.get(i + 1);
-        }
-        return linkedList.get(0);
-    }
 
-    public static void traval(Node<Integer> head) {
-        while (head != null) {
-            System.out.print(head.data + ",");
-            head = head.next;
-        }
-        System.out.println();
-    }
 
-    private static class Node<T> {
-        public Node<T> next;
-        public T data;
-    }
-
-    /**
-     * 单链表翻转
-     *
-     * @param head
-     */
-    public static <T> Node<T> invertLinkedList(Node<T> head) {
-        if (head == null || head.next == null) return head;
-        Node<T> current = head;
-        Stack<Node<T>> stack = new Stack<>();
-        while (current != null) {
-            stack.push(current);
-            current = current.next;
-        }
-        while (!stack.isEmpty()) {
-            Node<T> node = stack.pop();
-            System.out.print("," + node.data);
-        }
-        return current;
-    }
 
 
     public static void reverseBT(BTree.BNode root) {
