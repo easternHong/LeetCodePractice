@@ -95,4 +95,19 @@ public class BTree {
         //一层的深度是1，
         return Math.max(dLeft, dRight) + 1;
     }
+
+    /**
+     * 求二叉树第k层的所有节点个数
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    public static int getNodeCnt(BNode head, int k) {
+        if (head == null || k < 1) return 0;
+        if (k == 1) return 1;
+        int mLeft = getNodeCnt(head.left, k - 1);
+        int mRight = getNodeCnt(head.right, k - 1);
+        return mLeft + mRight;
+    }
 }

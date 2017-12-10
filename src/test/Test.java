@@ -1,14 +1,35 @@
 package test;
 
+import adt.sort.QuickSort;
 import adt.tree.BTree;
 import utils.Utils;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 import static adt.tree.BTree.tree;
 
 public class Test {
+
+    private String name;
+    private String content;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Test test = (Test) o;
+
+        if (name != null ? !name.equals(test.name) : test.name != null) return false;
+        return content != null ? content.equals(test.content) : test.content == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        return result;
+    }
 
     public static void main(String[] args) {
         print_99_table(10);
@@ -20,8 +41,32 @@ public class Test {
         BTree.BNode root = tree();
         invertBT_(root);
         System.out.println(root);
+
+        int a = 1027 & 0x06;
+        System.out.println(Integer.toBinaryString(1027));
+        System.out.println(Integer.toBinaryString(0x06));
+        System.out.println(a);
+
+        a = (byte) 0xffff;
+
+        System.out.println(a);
+        r();
     }
 
+    public static void r() {
+        int[] array = new int[100];
+        Map<Integer, Integer> set = new HashMap<>();
+        while (true) {
+            int r = Math.abs(new Random().nextInt() % 100);
+            if (!set.containsKey(r)) {
+                set.put(r, r);
+                array[set.size() - 1] = r;
+            }
+            if (set.size() == 100) break;
+        }
+        qSort(array);
+        System.out.println(array);
+    }
 
     public static void qSort(int[] array) {
         if (array == null) return;
@@ -48,20 +93,20 @@ public class Test {
      * @return
      */
     public static int partition(int l, int h, int[] array) {
-        if (l < h) {
-            int x = l, y = h;
-            int target = array[h];
-            while (x < y) {
-                while (x < y && array[x] < target) x++;
-                while (x < y && array[y] >= target) y--;
+        int x = l;
+        int y = h;
+        int target = array[h];
+        while (x < y) {
+            while (x < y && array[x] < target) x++;
+            while (x < y && array[y] >= target) y--;
+            if (array[x] >= array[y]) {
                 swap(x, y, array);
             }
-            if (array[x] >= target) {
-                swap(x, h, array);
-            } else x++;
-            return x;
         }
-        return -1;
+        if (array[x] >= target) {
+            swap(x, h, array);
+        } else x++;
+        return x;
     }
 
     private static void swap(int i, int j, int[] array) {
