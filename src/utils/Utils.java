@@ -40,8 +40,12 @@ public class Utils {
 
     public static <T> void printList(Node<T> head) {
         while (head != null) {
-            System.out.print("," + head.data);
+            System.out.print(head.data);
             head = head.next;
+            if (head != null) {
+                System.out.print(",");
+            }
+
         }
         System.out.println("");
     }

@@ -31,13 +31,13 @@ object Tree {
     //    LeetCode 二叉树经典题目
 //    说明
 //    题目
-//    144. Binary Tree Preorder Traversal
+//    144. Binary Tree PreOrder Traversal
 //    递归
 //    非递归
-//    94. Binary Tree Inorder Traversal
+//    94. Binary Tree InOrder Traversal
 //    递归
 //    非递归
-//    145. Binary Tree Postorder Traversal
+//    145. Binary Tree PostOrder Traversal
 //    递归
 //    非递归
 //    102. Binary Tree Level Order Traversal
